@@ -96,7 +96,7 @@ const forgotPassword = async (req, res) => {
 }
 
 const sendResetEmail = async (email, token, resetToken) => {
-	const resetUrl = `http://localhost:3000/reset-password/${resetToken}`
+	const resetUrl = `https://password-reset-mern.onrender.com/api/v1/reset-password/${resetToken}`
 
     const message = `
       <h1>You have requested a password reset</h1>
