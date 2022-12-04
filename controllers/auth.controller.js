@@ -96,25 +96,24 @@ const forgotPassword = async (req, res) => {
 }
 
 const sendResetEmail = async (email, token, resetToken) => {
-	const resetUrl = `https://password-reset-mern.onrender.com/api/v1/reset-password/${resetToken}`
-
-    const message = `
-      <h1>You have requested a password reset</h1>
-			<p>Your password reset code is: ${token}</p>
-      <p>Please click the following link to reset password:</p>
-      <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
-    `
-		
-    try {
-      await sendEmail({
-				from: process.env.ACCOUNT_EMAIL,
-        to: email,
-        subject: 'Password Reset Request',
-        text: message
-      })
-    } catch (err) {
-      console.error(err)
-    }
+	const resetUrl = `https://nm-password-reset.netlify.app/reset-password/${resetToken}`
+	const message = `
+		<h1>You have requested a password reset</h1>
+		<p>Your password reset code is: ${token}</p>
+		<p>Please click the following link to reset password:</p>
+		<a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+	`
+	
+	try {
+		await sendEmail({
+			from: process.env.ACCOUNT_EMAIL,
+			to: email,
+			subject: 'Password Reset Request',
+			text: message
+		})
+	} catch (err) {
+		console.error(err)
+	}
 }
 
 const resetPassword = async (req, res) => {
